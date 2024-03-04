@@ -1,5 +1,8 @@
 package com.dc.androidprofiler;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 public class MemoryInfo
 {
     //Java Runtime API
@@ -24,4 +27,5 @@ public class MemoryInfo
     public int otherPss;
     public int otherPrivateDirty;
     public int otherSharedDirty;
+    public ArrayList<String> statusList;
 }
