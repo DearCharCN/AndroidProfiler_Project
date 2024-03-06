@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.TrafficStats;
 import android.os.Build;
 import android.os.Debug;
 
@@ -107,6 +108,7 @@ public class UnitySupport {
 
         batteryReceiver = new BatteryReceiver();
         batteryReceiver.setCallback(unityCallback);
+        batteryReceiver.setOwnerActivity(activity);
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_BATTERY_CHANGED);
         filter.addAction(Intent.ACTION_BATTERY_LOW);
@@ -127,4 +129,13 @@ public class UnitySupport {
         return true;
     }
 
+    public long getDownloadBytes(){
+        int uid = android.os.Process.myUid();
+        return TrafficStats.getUidRxBytes(uid);
+    }
+
+    public long getUploadBytes(){
+        int uid = android.os.Process.myUid();
+        return TrafficStats.getUidTxBytes(uid);
+    }
 }
